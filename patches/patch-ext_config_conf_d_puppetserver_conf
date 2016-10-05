@@ -6,7 +6,7 @@ $OpenBSD$
      # Where the puppet-agent dependency places puppet, facter, etc...
      # Puppet server expects to load Puppet from this location
 -    ruby-load-path: [/opt/puppetlabs/puppet/lib/ruby/vendor_ruby]
-+    ruby-load-path: [${LOCALBASE}/lib/ruby/vendor_ruby/2.2,${LOCALBASE}/lib/ruby/site_ruby/2.2,${LOCALBASE}/lib/ruby/2.2]
++    ruby-load-path: [${LOCALBASE}/lib/ruby/vendor_ruby/${MODRUBY_LIBREV},${LOCALBASE}/lib/ruby/site_ruby/${MODRUBY_LIBREV},${LOCALBASE}/lib/ruby/${MODRUBY_LIBREV}]
  
      # This setting determines where JRuby will look for gems.  It is also
      # used by the `puppetserver gem` command line tool.
