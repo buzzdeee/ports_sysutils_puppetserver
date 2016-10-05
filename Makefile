@@ -2,7 +2,7 @@
 
 COMMENT =		server automation framework and application
 
-DISTNAME =		puppetserver-2.4.0
+DISTNAME =		puppetserver-2.6.0
 CATEGORIES =		sysutils
 
 HOMEPAGE =		https://github.com/puppetlabs/puppet-server
@@ -38,7 +38,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/puppet-server-release.jar ${SHAREDIR}
 	${INSTALL_DATA} ${WRKSRC}/ext/config/conf.d/*.conf ${EXDIR}/conf.d/
 #	${INSTALL_DATA} ${WRKDIR}/os-settings.conf  ${EXDIR}/conf.d/
-	${INSTALL_DATA} ${WRKSRC}/ext/config/bootstrap.cfg ${EXDIR}
+	${INSTALL_DATA} ${WRKSRC}/ext/system-config/services.d/bootstrap.cfg ${EXDIR}
 	${INSTALL_DATA} ${WRKSRC}/ext/config/logback.xml ${EXDIR}
 #	${INSTALL_DATA} ${WRKSRC}/ext/cli/puppetserver-env ${SHAREDIR}/cli/
 	${INSTALL_SCRIPT} ${WRKSRC}/ext/bin/puppetserver ${PREFIX}/bin/
