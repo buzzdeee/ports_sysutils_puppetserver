@@ -19,7 +19,8 @@ MODULES =		java \
 MODJAVA_VER =		1.8+
 
 RUN_DEPENDS =		java/javaPathHelper \
-			shells/bash
+			shells/bash \
+			databases/puppetdb4
 
 NO_BUILD =		Yes
 NO_TEST =		Yes
