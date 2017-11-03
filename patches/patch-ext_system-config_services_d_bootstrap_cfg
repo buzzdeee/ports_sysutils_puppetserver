@@ -3,9 +3,10 @@ $OpenBSD$
 without the patch, puppetserver will whine on startup, that it doesn't know 
 about the ca-service
 
---- ext/system-config/services.d/bootstrap.cfg.orig	Wed Oct  5 22:32:27 2016
-+++ ext/system-config/services.d/bootstrap.cfg	Wed Oct  5 22:32:38 2016
-@@ -12,3 +12,8 @@ puppetlabs.trapperkeeper.services.authorization.author
+Index: ext/system-config/services.d/bootstrap.cfg
+--- ext/system-config/services.d/bootstrap.cfg.orig
++++ ext/system-config/services.d/bootstrap.cfg
+@@ -12,6 +12,12 @@ puppetlabs.trapperkeeper.services.authorization.author
  puppetlabs.services.versioned-code-service.versioned-code-service/versioned-code-service
  puppetlabs.trapperkeeper.services.scheduler.scheduler-service/scheduler-service
  puppetlabs.trapperkeeper.services.status.status-service/status-service
@@ -14,3 +15,7 @@ about the ca-service
 +puppetlabs.services.ca.certificate-authority-service/certificate-authority-service
 +# To disable the CA service, comment out the above line and uncomment the line below
 +#puppetlabs.services.ca.certificate-authority-disabled-service/certificate-authority-disabled-service
++puppetlabs.trapperkeeper.services.watcher.filesystem-watch-service/filesystem-watch-service
+ puppetlabs.trapperkeeper.services.metrics.metrics-service/metrics-service
+ puppetlabs.trapperkeeper.services.metrics.metrics-service/metrics-webservice
+ puppetlabs.services.jruby.jruby-metrics-service/jruby-metrics-service

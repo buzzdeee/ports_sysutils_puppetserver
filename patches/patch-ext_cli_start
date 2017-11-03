@@ -1,0 +1,23 @@
+$OpenBSD$
+
+Index: ext/cli/start
+--- ext/cli/start.orig
++++ ext/cli/start
+@@ -3,7 +3,7 @@ set +e
+ 
+ pid="$(pgrep -f puppet-server-release.jar)"
+ 
+-restartfile="/opt/puppetlabs/server/data/puppetserver/restartcounter"
++restartfile="${LOCALSTATEDIR}/puppetlabs/server/data/puppetserver/restartcounter"
+ start_timeout="${START_TIMEOUT:-300}"
+ 
+ realname="puppetserver"
+@@ -17,7 +17,7 @@ if [ ! -e "${INSTALL_DIR}/ezbake-functions.sh" ]; then
+     exit 1
+ fi
+ 
+-/usr/bin/install --directory --owner=$USER --group=$GROUP --mode=755 "$rundir"
++/usr/bin/install -d -o $USER -g $GROUP -m 755 "$rundir"
+ if [ $? -ne 0 ]; then
+     echo "Unable to create/set permissions for rundir: ${rundir}" 1>&2
+     exit 1

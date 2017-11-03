@@ -10,6 +10,8 @@ share/examples/puppetserver/conf.d/auth.conf
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/conf.d/auth.conf
 share/examples/puppetserver/conf.d/global.conf
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/conf.d/global.conf
+share/examples/puppetserver/conf.d/metrics.conf
+@sample ${SYSCONFDIR}/puppetlabs/puppetserver/conf.d/metrics.conf
 share/examples/puppetserver/conf.d/puppetserver.conf
 @sample ${SYSCONFDIR}/puppetlabs/puppetserver/conf.d/puppetserver.conf
 share/examples/puppetserver/conf.d/web-routes.conf
@@ -24,8 +26,16 @@ share/puppetserver/cli/apps/
 share/puppetserver/cli/apps/foreground
 share/puppetserver/cli/apps/gem
 share/puppetserver/cli/apps/irb
+share/puppetserver/cli/apps/reload
 share/puppetserver/cli/apps/ruby
+share/puppetserver/cli/apps/start
+share/puppetserver/cli/apps/stop
+share/puppetserver/ezbake-functions.sh
 share/puppetserver/puppet-server-release.jar
-@sample /var/puppet/jruby-gems/
+@owner _puppet:_puppet
+@sample /var/puppetlabs/server/data/puppetserver/jruby-gems/
+@sample /var/puppetlabs/server/data/puppetserver/vendored-jruby-gems/
 @sample /var/log/puppetlabs/puppetserver/
+@sample /var/puppetlabs/server/run/
+@owner
 @rcscript ${RCDIR}/puppetserver
