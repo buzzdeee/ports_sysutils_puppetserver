@@ -18,11 +18,12 @@ MODULES =		java \
 			lang/ruby
 MODJAVA_VER =		1.8+
 
+BUILD_DEPENDS +=	archivers/unzip \
+			archivers/zip
 RUN_DEPENDS =		java/javaPathHelper \
 			shells/bash \
 			databases/puppetdb5
 
-NO_BUILD =		Yes
 NO_TEST =		Yes
 
 SHAREDIR =		${PREFIX}/share/puppetserver/
@@ -41,6 +42,14 @@ do-configure:
 		${WRKSRC}/ext/ezbake-functions.sh
 #	${SUBST_CMD} -c ${FILESDIR}/os-settings.conf ${WRKDIR}/os-settings.conf
 
+do-build:
+	mkdir -p ${WRKSRC}/jruby17 ${WRKSRC}/jruby9k ${WRKSRC}/tmp
+	cd ${WRKSRC}/tmp && tar -xvzf ${DISTDIR}/jffi-1.2.16.tar.gz
+	cd ${WRKSRC}/jruby9k && unzip ../jruby-9k.jar
+	cd ${WRKSRC}/jruby17 && unzip ../jruby-1_7.jar && \
+		mkdir jni/x86_64-OpenBSD && \
+		cp ../jruby9k/jni/x86_64-OpenBSD/libjffi-1.2.so jni/x86_64-OpenBSD
+	cd ${WRKSRC}/jruby17 &&  zip -r ./* ../jruby-1_7.jar
 
 do-install:
 	${INSTALL_DATA_DIR} ${SHAREDIR}/cli/apps/
