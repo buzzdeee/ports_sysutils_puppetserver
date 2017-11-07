@@ -1,0 +1,17 @@
+$OpenBSD$
+
+Index: ext/cli_defaults/cli-defaults.sh
+--- ext/cli_defaults/cli-defaults.sh.orig
++++ ext/cli_defaults/cli-defaults.sh
+@@ -1,4 +1,4 @@
+-INSTALL_DIR="/opt/puppetlabs/server/apps/puppetserver"
++INSTALL_DIR="/usr/local/share/puppetserver"
+ 
+ JRUBY_JAR="${JRUBY_JAR:-${INSTALL_DIR}/jruby-1_7.jar}"
+ 
+@@ -7,4 +7,4 @@ if [ ! -e "$JRUBY_JAR" ]; then
+   return 1
+ fi
+ 
+-CLASSPATH="${CLASSPATH}:${JRUBY_JAR}:/opt/puppetlabs/server/data/puppetserver/jars/*"
++CLASSPATH="${CLASSPATH}:${JRUBY_JAR}:/var/puppetlabs/server/data/puppetserver/jars/*"

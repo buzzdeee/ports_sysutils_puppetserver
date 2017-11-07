@@ -30,11 +30,15 @@ share/puppetserver/cli/apps/reload
 share/puppetserver/cli/apps/ruby
 share/puppetserver/cli/apps/start
 share/puppetserver/cli/apps/stop
+share/puppetserver/cli/cli-defaults.sh
 share/puppetserver/ezbake-functions.sh
+share/puppetserver/jruby-1_7.jar
+share/puppetserver/jruby-9k.jar
 share/puppetserver/puppet-server-release.jar
 @owner _puppet:_puppet
 @sample /var/puppetlabs/server/data/puppetserver/jruby-gems/
 @sample /var/puppetlabs/server/data/puppetserver/vendored-jruby-gems/
+@sample /var/puppetlabs/server/data/puppetserver/jars/
 @sample /var/log/puppetlabs/puppetserver/
 @sample /var/puppetlabs/server/run/
 @owner

@@ -2,7 +2,7 @@
 
 COMMENT =		server automation framework and application
 
-DISTNAME =		puppetserver-5.1.3
+DISTNAME =		puppetserver-5.1.4
 CATEGORIES =		sysutils
 
 HOMEPAGE =		https://github.com/puppetlabs/puppetserver
@@ -29,7 +29,7 @@ NO_TEST =		Yes
 SHAREDIR =		${PREFIX}/share/puppetserver/
 EXDIR =			${PREFIX}/share/examples/puppetserver/
 
-BOOTSRAP_CONFIG =	${SYSCONFDIR}/puppetlabs/puppetserver/bootstrap.cfg
+BOOTSTRAP_CONFIG =	${SYSCONFDIR}/puppetlabs/puppetserver/bootstrap.cfg
 
 SUBST_VARS +=		BOOTSTRAP_CONFIG
 
@@ -39,7 +39,8 @@ do-configure:
 		${WRKSRC}/ext/cli/foreground \
 		${WRKSRC}/ext/cli/start \
 		${WRKSRC}/ext/cli/reload \
-		${WRKSRC}/ext/ezbake-functions.sh
+		${WRKSRC}/ext/ezbake-functions.sh \
+		${WRKSRC}/ext/cli_defaults/cli-defaults.sh
 #	${SUBST_CMD} -c ${FILESDIR}/os-settings.conf ${WRKDIR}/os-settings.conf
 
 do-build:
@@ -48,13 +49,15 @@ do-build:
 	cd ${WRKSRC}/jruby9k && unzip ../jruby-9k.jar
 	cd ${WRKSRC}/jruby17 && unzip ../jruby-1_7.jar && \
 		mkdir jni/x86_64-OpenBSD && \
-		cp ../jruby9k/jni/x86_64-OpenBSD/libjffi-1.2.so jni/x86_64-OpenBSD
-	cd ${WRKSRC}/jruby17 &&  zip -r ./* ../jruby-1_7.jar
+		cp ../jruby9k/jni/x86_64-OpenBSD/libjffi-1.2.so jni/x86_64-OpenBSD/
+	cd ${WRKSRC}/jruby17 &&  zip -r ../jruby-1_7.jar ./*
 
 do-install:
 	${INSTALL_DATA_DIR} ${SHAREDIR}/cli/apps/
 	${INSTALL_DATA_DIR} ${PREFIX}/share/examples/puppetserver/conf.d/
 	${INSTALL_DATA} ${WRKSRC}/puppet-server-release.jar ${SHAREDIR}
+	${INSTALL_DATA} ${WRKSRC}/jruby-1_7.jar ${SHAREDIR}
+	${INSTALL_DATA} ${WRKSRC}/jruby-9k.jar ${SHAREDIR}
 	${INSTALL_DATA} ${WRKSRC}/ext/config/conf.d/*.conf ${EXDIR}/conf.d/
 #	${INSTALL_DATA} ${WRKDIR}/os-settings.conf  ${EXDIR}/conf.d/
 	${INSTALL_DATA} ${WRKSRC}/ext/system-config/services.d/bootstrap.cfg ${EXDIR}
@@ -63,6 +66,7 @@ do-install:
 #	${INSTALL_DATA} ${WRKSRC}/ext/cli/puppetserver-env ${SHAREDIR}/cli/
 	${INSTALL_SCRIPT} ${WRKSRC}/ext/bin/puppetserver ${PREFIX}/bin/
 	${INSTALL_SCRIPT} ${WRKSRC}/ext/cli/* ${SHAREDIR}/cli/apps/
+	${INSTALL_SCRIPT} ${WRKSRC}/ext/cli_defaults/* ${SHAREDIR}/cli/
 
 post-install:
 	find ${PREFIX} -type f \( -name '*.beforesubst' -or -name '*.orig' \) -exec rm {} \;
